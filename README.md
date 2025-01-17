@@ -4,11 +4,11 @@
 
 ## Preview
 
-<img alt="Intro" src="src/assests/images/intro.jpeg" width="65%"></div>
-<img alt="Home" src="src/assests/images/home1.jpeg" width="65%"></div>
-<img alt="Status" src="src/assests/images/progressbar.jpeg" width="65%"></div>
-<img alt="Notify" src="src/assests/images/uploaded.jpeg" width="65%"></div>
-<img alt="Getlink" src="src/assests/images/generatelink.jpeg" width="65%"></div>
+<img alt="Intro" src="frontend/src/assets/images/intro.jpeg" width="65%"></div>
+<img alt="Home" src="frontend/src/assets/images/home1.jpeg" width="65%"></div>
+<img alt="Status" src="frontend/src/assets/images/progressbar.jpeg" width="65%"></div>
+<img alt="Notify" src="frontend/src/assets/images/uploaded.jpeg" width="65%"></div>
+<img alt="Getlink" src="frontend/src/assets/images/generatelink.jpeg" width="65%"></div>
 =======
 ## Demo
 
