@@ -4,10 +4,19 @@
 
 ## Preview
 
+### Intro page
 <img alt="Intro" src="frontend/src/assets/images/intro.jpeg" width="65%"></div>
+
+### Home page
 <img alt="Home" src="frontend/src/assets/images/home1.jpeg" width="65%"></div>
+
+### progressbar
 <img alt="Status" src="frontend/src/assets/images/progressbar.jpeg" width="65%"></div>
+
+### uploaded File
 <img alt="Notify" src="frontend/src/assets/images/uploaded.jpeg" width="65%"></div>
+
+### Getlink
 <img alt="Getlink" src="frontend/src/assets/images/generatelink.jpeg" width="65%"></div>
 =======
 ## Demo
