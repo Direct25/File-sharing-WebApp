@@ -1,24 +1,4 @@
-// import express from 'express';
-// import dotenv from 'dotenv';
-// import routes from './routes/route.js';
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
 
-// dotenv.config();
-
-// const app = express();
-// app.use(express.json()); // To parse JSON bodies
-
-// app.use(cors());
-// // app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use('/api', routes);
-
-// app.listen(3000, () => {
-//     console.log('Server is running on port 3000');
-// }).on('error', (err) => {
-//     console.error('Failed to start server:', err);
-// });
 
 import express from 'express';
 import dotenv from 'dotenv';
@@ -26,7 +6,11 @@ import routes from './routes/route.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 
-dotenv.config();
+dotenv.config(
+ {
+     path: "./.env"
+ }
+);
 
 const app = express();
 const PORT = process.env.PORT || 3001;

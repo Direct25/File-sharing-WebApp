@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'http://localhost:3001/api'; // vercel ka backend link
 
 export const getSignedUrls = async (files) => {
     try {
