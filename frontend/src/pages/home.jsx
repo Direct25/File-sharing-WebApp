@@ -3,7 +3,7 @@
 
 import { useRef, useState, useEffect } from 'react';
 import '../App.css';
-import { getSignedUrls } from '../service/api';
+import { getSignedUrls } from '../service/api.js';
 
 const Home = () => {
     const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB in bytes
