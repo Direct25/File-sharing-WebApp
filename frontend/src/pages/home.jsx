@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useLayoutEffect } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
 import '../App.css';
 import axios from 'axios';
 import DonationButton from './DonationButton.jsx';
@@ -105,6 +105,7 @@ const Home = () => {
             };
 
             try {
+                // eslint-disable-next-line no-loop-func
                 const response = await axios.post(uploadUrl, formData, {
                     headers: headers,
                     onUploadProgress: (event) => {
