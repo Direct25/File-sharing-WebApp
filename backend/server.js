@@ -68,16 +68,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+// app.use(cors({
+//     origin: [
+//         'https://file-sharing-frontend-4g1z.onrender.com', // ← Add this line
+//         'https://client-p7ybcxo24-direct25s-projects.vercel.app',
+//         'http://localhost:3000',
+//         '*'
+//     ],
+//     credentials: true,
+//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//     allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
 app.use(cors({
-    origin: [
-        'https://file-sharing-frontend-4g1z.onrender.com', // ← Add this line
-        'https://client-p7ybcxo24-direct25s-projects.vercel.app',
-        'http://localhost:3000'
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+  origin: true, // allow all origins
+  credentials: true
 }));
+
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
