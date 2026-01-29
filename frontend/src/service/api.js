@@ -20,7 +20,7 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001/api";
 
 export const getSignedUrls = async (files) => {
     try {
-        const response = await axios.post(`${API_URL}/file-urls`, { files });
+        const response = await axios.post(`${API_URL}/upload`, { files });
         return response.data;
     } catch (error) {
         console.error('Error while calling the API', error.message);
