@@ -77,6 +77,60 @@ const Home = () => {
         setFiles(selectedFiles);
     };
 
+    // // --- 4. Large File Logic (Chunking) ---
+    // const uploadLargeFile = async (file, authData) => {
+    //     const uniqueUploadId = uuidv4();
+    //     const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+    //     let start = 0;
+    //     let end = Math.min(CHUNK_SIZE, file.size);
+
+    //     // Use /auto/upload so Cloudinary sorts Video vs Raw automatically
+    //     const uploadUrl = `https://api.cloudinary.com/v1_1/${authData.cloudName}/auto/upload`;
+    //     let finalUrl = '';
+
+    //     for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+    //         const chunk = file.slice(start, end);
+    //         const formData = new FormData();
+
+    //         formData.append('file', chunk);
+    //         formData.append('api_key', authData.apiKey);
+    //         formData.append('timestamp', authData.timestamp);
+    //         formData.append('signature', authData.signature);
+    //         formData.append('cloud_name', authData.cloudName);
+    //         formData.append('resource_type', 'auto'); // Crucial for auto-detection
+
+    //         const headers = {
+    //             'X-Unique-Upload-Id': uniqueUploadId,
+    //             'Content-Range': `bytes ${start}-${end - 1}/${file.size}`
+    //         };
+
+    //         try {
+    //             // eslint-disable-next-line no-loop-func
+    //             const response = await axios.post(uploadUrl, formData, {
+    //                 headers: headers,
+    //                 onUploadProgress: (event) => {
+    //                     if (event.loaded) {
+    //                         const totalLoaded = start + event.loaded;
+    //                         const pct = Math.round((totalLoaded / file.size) * 100);
+    //                         setProgress(prev => ({ ...prev, [file.name]: pct }));
+    //                     }
+    //                 }
+    //             });
+
+    //             if (chunkIndex === totalChunks - 1) {
+    //                 finalUrl = response.data.secure_url;
+    //             }
+    //             start = end;
+    //             end = Math.min(start + CHUNK_SIZE, file.size);
+
+    //         } catch (err) {
+    //             console.error(`Chunk upload failed: ${err}`);
+    //             throw err;
+    //         }
+    //     }
+    //     return finalUrl;
+    // };
+
     // --- 4. Large File Logic (Chunking) ---
     const uploadLargeFile = async (file, authData) => {
         const uniqueUploadId = uuidv4();
@@ -90,14 +144,15 @@ const Home = () => {
 
         for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
             const chunk = file.slice(start, end);
-            const formData = new FormData();
+            const chunkStart = start; // ✅ FIX: Captures the correct start value safely
 
+            const formData = new FormData();
             formData.append('file', chunk);
             formData.append('api_key', authData.apiKey);
             formData.append('timestamp', authData.timestamp);
             formData.append('signature', authData.signature);
             formData.append('cloud_name', authData.cloudName);
-            formData.append('resource_type', 'auto'); // Crucial for auto-detection
+            formData.append('resource_type', 'auto'); 
 
             const headers = {
                 'X-Unique-Upload-Id': uniqueUploadId,
@@ -105,12 +160,12 @@ const Home = () => {
             };
 
             try {
-                // eslint-disable-next-line no-loop-func
                 const response = await axios.post(uploadUrl, formData, {
                     headers: headers,
                     onUploadProgress: (event) => {
                         if (event.loaded) {
-                            const totalLoaded = start + event.loaded;
+                            // ✅ FIX: Uses safe 'chunkStart' variable
+                            const totalLoaded = chunkStart + event.loaded;
                             const pct = Math.round((totalLoaded / file.size) * 100);
                             setProgress(prev => ({ ...prev, [file.name]: pct }));
                         }
